@@ -1,9 +1,22 @@
 var express = require('express')
-var app = express()
+var fs = require('fs')
+var https = require('https')
 var path = require('path')
+var opener = require('opener')
+var app = express()
+var port = parseInt(process.env.PORT, 10) || 9000
 
-//app.use(express.static(__dirname)); // Current directory is root
-app.use(express.static(path.join(__dirname, 'src'))) //  "public" off of current is root
+app.use(express.static(path.join(__dirname, 'src')))
 
-app.listen(4000)
-console.log('Listening on port 4000')
+https
+  .createServer(
+    {
+      key: fs.readFileSync('server.key'),
+      cert: fs.readFileSync('server.cert')
+    },
+    app
+  )
+  .listen(port, () => {
+    console.log('Example app listening on port ' + port + '! Go to https://localhost:' + port)
+    opener('https://localhost:' + port)
+  })
