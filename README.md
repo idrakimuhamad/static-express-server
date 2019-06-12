@@ -10,4 +10,4 @@ Start the server
 
 `yarn start`
 
-Includes the server cert and private key for https. this is just for test purposes, so be sure to generate your own cert and key before deploying. Don't use the one from the repo as, obviously, you've already exposed it to the public here, so you don't want to use this.
+Includes the server cert and private key for `https`. This is just for test purposes, so be sure to generate your own cert and key if you plan to use this server for deployment. Don't use the one from the repo as, obviously, you've already exposed it to the public here, so you don't want to use this.
